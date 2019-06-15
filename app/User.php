@@ -29,31 +29,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token','api_token',
     ];
-/*
-    public function favorites(){
-        return $this->hasMany(favorite::class);
-    }
-    public function spareparts()
-    {
-        return $this->belongsToMany(SparePart::class);
-    }
-*/
-    // public function spareparts_owner(){
-    //     return $this->belongsto(spareparts_owner::class);
-    // }
-
-
-
-
 
 public function spareparts()
 {
     return $this->hasMany(SparePart::class);
 
 }
+//Agances owners
 public function showrooms()
 {
-    return $this->hasMany(Agance::class);
+    return $this->hasMany('App\Agance','user_id','id');
 
 }
 public function favorite()

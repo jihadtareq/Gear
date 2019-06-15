@@ -21,11 +21,14 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user',function(Request $request){  //we need middleware when he islogin
 return $request->user();
 });
+Route::get('/showall','Api\Profile@showall');
 Route::middleware('auth:api')->group( function(){
 	Route::get('/profile','Api\Profile@profileOwners');
 	Route::post('/add/sparepart','Api\Profile@storeSparepart');
   Route::post('/add/cars','Api\Profile@storeAgance');
-  Route::get('/showall','Api\Profile@showall');
+  //Route::get('/showall','Api\Profile@showall');
+
+  // Route::get('/showall','Api\Profile@showall');
   Route::get('/showallsparepart','Api\Profile@showallsparepart');
   Route::get('/showallcars','Api\Profile@showallcars');
 

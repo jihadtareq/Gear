@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Arr;
+
 use stdClass;
 use DB;
 
@@ -31,7 +33,7 @@ class Profile extends Controller
     	}
     	elseif($type == 1)
     	{
-    	$q2=$owner->with(['agances'])->orderBy('created_at')->get();
+    	$q2=$owner->with(['showrooms'])->orderBy('created_at')->get();
         return response()->json($q2);
 
 
@@ -129,14 +131,40 @@ public function storeAgance(Request $request)
    //$sparepart->owners()->attach($owner);
 }
 public function showall(){
-     //$id=Auth::id();
+     $id=Auth::id();
+     $type=Auth::user();
      $owner=Auth::user();
-     //$type=Auth::user()->type;
-     $obj =new stdClass();
-     //$sp []=DB::select('select * from users where type = 2');
-     $obj->data=$owner->with(['showrooms','spareparts'])->orderBy('created_at')->get();
+    // $obj->data=$owner->with(['showrooms'])->get();
+     $objArr = [];
+     $showroom = User()->showrooms->get();
+     //$showrooms = Agance::find($id);
+   // $showrooms =Agance::all();
+    //$owners=$showrooms->owner;
+//echo $showrooms->owner->name;
+   
+
+      foreach ($showroom as $key => $showr) {
+      $obj =new stdClass();
+      $
+      $obj->storename = $showr->name;
+      // $obj->kindofcarhave = $showroom->kindofcarhave;
+      // $obj->price = $showroom->price;
+      // $obj->description = $showroom->description;
+      array_push($objArr,$obj);
+
+    // $obj->name = $showroom->owner()->get('name');
+       }
+    // $obj->ownerName=$showrooms->owner()->get('name');
+
+
+
+    // $obj->data=$showrooms->owner()->get();
+
+     //return ($obj);
      //$obj->data2=$owner->with(['spareparts'])->get();
-     return response()->json($obj);
+     $obj1 =new stdClass();
+     $obj1->sds=$objArr;
+      return response()->json($obj1);
 }
 public function showallsparepart(){
      $id=Auth::id();
@@ -144,7 +172,7 @@ public function showallsparepart(){
      $owner=Auth::user();
      
      $obj =new stdClass();
-     $obj->sp =DB::select('select users.name,users.mobile,users.address,users.area,spareparts.sparepart,spareparts.price,spareparts.storename,spareparts.description,spareparts.filename,spareparts.mime,spareparts.original_filename from spareparts INNER JOIN users ON spareparts.user_id =users.id AND users.type=2 ');
+     $obj->sp =DB::select('select users.name,users.mobile,spareparts.sparepart,spareparts.price,spareparts.storename,spareparts.description,spareparts.filename,spareparts.mime,spareparts.original_filename from spareparts INNER JOIN users ON spareparts.user_id =users.id AND users.type=2 ');
      //$obj=$owner->with(['spareparts'])where($sp,=,$id)->orderBy('created_at')->get();
      return response()->json($obj);
 }

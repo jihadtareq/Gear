@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Agance extends Model
 {
     //
-    protected $fillable =['kindofcarhave','price','description','filename','mime',
+    protected $table='agances';
+    protected $fillable =['kindofcarhave','price','description','agancename','filename','mime',
     'original_filename',
     ];
-    /* public function owners(){
-    	return $this->belongsToMany(User::class);
-    }
-*/
     public function owner(){
-    	return $this->belongsTo('App/User');
+    	return $this->belongsTo('App\User','user_id','id');
     }
+
 }
