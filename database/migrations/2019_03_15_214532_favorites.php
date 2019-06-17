@@ -14,9 +14,13 @@ class Favorites extends Migration
     public function up()
     { 
        Schema::create('favorites', function (Blueprint $table) {
-            $table->increments('id');
-           //$table->Integer('user_id')->index()->unsign();
-            $table->Integer('itemsid');
+          $table->bigIncrements('id');
+          $table->integer('sparepart_id')->unsigned();
+          $table->foreign('sparepart_id')->references('id')->on('spareparts')->onDelete('cascade');
+          $table->integer('car_id')->unsigned();
+          $table->foreign('car_id')->references('id')->on('agances')->onDelete('cascade');
+          $table->integer('user_id')->unsigned();
+          $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
            });
     }

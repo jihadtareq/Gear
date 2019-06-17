@@ -12,8 +12,9 @@ class Mechanic extends Authenticatable
 	 *
 	 *
 	 */
+    protected $table='mechanics';
     protected $fillable = [
-     'name_shop','mobile','area','address','worktime','Wash', 'kindofcartofix','description',
+     'name_shop','mobile','address_lat','address_long','worktime_from','worktime_to','Wash', 'kindofcartofix','description',
     ];
 
     public function admin_id()

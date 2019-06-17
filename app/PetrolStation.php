@@ -12,8 +12,9 @@ class PetrolStation extends Authenticatable
 	 *
 	 *
 	 */
+    protected $table='petrol_stations';
     protected $fillable = [
-     'location','nameofpetrolstation',];
+     'address_lat','address_long','nameofpetrolstation',];
 
      public function adminid()
     {

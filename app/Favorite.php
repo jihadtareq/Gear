@@ -15,11 +15,20 @@ class Favorite extends Model
      */
     protected $table='favorites';
     protected $fillable = [
-        'items', 
+        'sparepart_id','car_id','user_id',
     ];
 
 	 public function user()
     {
         return $this->belongsTo(User::class);
     }
+    public function sparepart()
+    {
+        return $this->belongsTo(SparePart::class);
+    }
+    public function car()
+    {
+        return $this->belongsTo(Agance::class);
+    }
+
 }

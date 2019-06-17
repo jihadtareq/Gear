@@ -17,7 +17,8 @@ class Petrolstations extends Migration
             $table->increments('id');
             //$table->integer('admin_id')->unsigned()->nullable();
             //$table->foreign('admin_id')->references('id')->on('admins')->nullable();
-            $table->string('location');
+            $table->double('address_lat');
+            $table->double('address_long');
             $table->string('nameofpetrolstation');
             $table->timestamps();
            });

@@ -21,16 +21,20 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user',function(Request $request){  //we need middleware when he islogin
 return $request->user();
 });
-Route::get('/showall','Api\Profile@showall');
+//No Auth-------------------------------------------------//
+//Route::get('/showall','Api\Profile@showall');
+Route::get('/showMechanics','Api\Profile@showMechanics');
+Route::get('/showPetrolStation','Api\Profile@showPetrolStation');
+Route::get('/showallsparepart','Api\Profile@showallsparepart');
+Route::get('/showallcars','Api\Profile@showallcars');
+//With Auth-------------------------------------------------//
 Route::middleware('auth:api')->group( function(){
 	Route::get('/profile','Api\Profile@profileOwners');
 	Route::post('/add/sparepart','Api\Profile@storeSparepart');
   Route::post('/add/cars','Api\Profile@storeAgance');
-  //Route::get('/showall','Api\Profile@showall');
-
-  // Route::get('/showall','Api\Profile@showall');
-  Route::get('/showallsparepart','Api\Profile@showallsparepart');
-  Route::get('/showallcars','Api\Profile@showallcars');
+  Route::post('/make/favorite','Api\Profile@makeFavorite');
+  Route::get('/delete/favorite','Api\Profile@deleteFavorite');
+  Route::get('/show/favorite','Api\Profile@showFavorite');
 
 });
 Route::group(['namespace'=>'Api'],function(){

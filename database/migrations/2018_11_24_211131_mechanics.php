@@ -20,9 +20,10 @@ class Mechanics extends Migration
             //$table->foreign('admin_id')->references('id')->on('admins')->nullable();
             $table->string('name_shop');
             $table->string('mobile')->unique();
-            $table->string('area');
-            $table->string('address');
-            $table->integer('worktime');
+            $table->double('address_lat');
+            $table->double('address_long');
+            $table->time('worktime_from');
+            $table->time('worktime_to');
             $table->enum('Wash',['Yes','No']);
             $table->string('kindofcartofix');
             $table->string('description');

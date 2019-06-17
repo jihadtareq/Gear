@@ -16,8 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-           // $table->string('first_name');
-           //$table->string('middle_name');
             $table->string('last_name');
             $table->string('mobile')->unique();
             $table->string('email')->unique();
@@ -25,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->double('address_lat');
             $table->double('address_long');
             $table->string('api_token', 60);
-            //$table->enum('KindOfCars',['Kia','BMW','Peugeot','Geely','Nissan','Mercedes-Benz','Chevrolet','Hummar','Jeep','Audi','Dodge','FAIT','Ford','Honda','Hyundai','Isuzu','Reunalt','Mitsubishi']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('id_number');

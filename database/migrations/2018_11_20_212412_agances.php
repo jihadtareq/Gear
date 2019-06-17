@@ -16,10 +16,8 @@ class Agances extends Migration
         Schema::create('agances', function (Blueprint $table) {
             $table->increments('id');
            // $table->Integer('user_id')->unsign()->index();
-           // $table->unsignedBigInteger('user_id');
            $table->integer('user_id')->unsigned();
            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-           // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('kindofcarhave');
             $table->double('price');
             $table->longtext('description');
